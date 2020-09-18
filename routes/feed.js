@@ -8,5 +8,15 @@ router.get('/posts', feedcontroller.getPosts);
 router.post('/post', [
     body('title').trim().isLength({ min: 5 }),
     body('content').trim().isLength({ min: 5 })
-], feedcontroller.createPOsts);
+], feedcontroller.createPosts);
+
+router.get('/post/:postId/', feedcontroller.getonePost);
+
+router.put('/post/:postId', [
+    body('title').trim().isLength({ min: 5 }),
+    body('content').trim().isLength({ min: 5 })
+], feedcontroller.updatePost);
+
+router.delete('/post/:postId', feedcontroller.deletePost);
+
 module.exports = router;

@@ -11,7 +11,7 @@ exports.getPosts = async (req, res, next) => {
   const perPage = 2;
   try {
     const totalItems = await Post.find().countDocuments();
-    const posts = await Post.find()
+    const posts = await Post.find().populate('creator')
       .skip((currentPage - 1) * perPage)
       .limit(perPage);
 
@@ -69,7 +69,7 @@ exports.createPost = async (req, res, next) => {
 
 exports.getPost = async (req, res, next) => {
   const postId = req.params.postId;
-  const post = await Post.findById(postId);
+  const post = await Post.findById(postId).populate('creator');
   try {
     if (!post) {
       const error = new Error('Could not find post.');

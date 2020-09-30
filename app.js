@@ -61,7 +61,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    'mongodb://localhost:27017/post_feed', { useNewUrlParser: true }
+    'mongodb://localhost:27017/post_feed', { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(result => {
     console.log('success')
